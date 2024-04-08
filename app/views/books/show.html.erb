@@ -8,6 +8,7 @@
       <%= render 'form', book: Book.new %>
     </div>
     <div class='col-md-8 offset-md-1'>
+      <%= render 'users/search' %>
   		<h2>Book detail</h2>
   		<table class='table'>
   		  <tr>
@@ -21,7 +22,9 @@
           <% if user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-            <td><%= render 'favorites/favorite', book: @book %></td>
+            <td id="favorite_buttons_<%= @book.id %>" >
+              <%= render "favorites/favorite", book: @book %>
+            </td>
             <td>コメント数：<%= @book.book_comments.count %></td>
           <% end %>
         </tr>
